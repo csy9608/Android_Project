@@ -12,19 +12,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:id="@+id/myitm_iv1"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:id="@+id/myitm_iv2"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:id="@+id/myitm_iv3"/>
 
     </LinearLayout>
 

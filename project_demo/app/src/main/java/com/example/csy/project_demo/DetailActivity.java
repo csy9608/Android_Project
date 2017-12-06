@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -126,7 +127,39 @@ public class DetailActivity extends AppCompatActivity{
         detail_delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Response.Listener<String> listener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            Boolean success = jsonResponse.getBoolean("success");
+                            if(success){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                builder.setMessage("삭제에 성공했습니다.")
+                                        .setPositiveButton("확인", null)
+                                        .create()
+                                        .show();
+                                startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                builder.setMessage("삭제에 실패했습니다.")
+                                        .setNegativeButton("다시 시도", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                Map params = new HashMap();
+                params.put("boardID", Integer.toString(boardID));
+                params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
+                params.put("delete", Boolean.toString(true));
 
+                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD, params, listener);
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                queue.add(volleyRequest);
             }
         });
 

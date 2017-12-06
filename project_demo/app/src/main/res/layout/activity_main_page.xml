@@ -14,7 +14,7 @@
     </ListView>
 
     <android.support.design.widget.BottomNavigationView
-            android:id="@+id/mypage_btm_nav"
+            android:id="@+id/main_btm_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
