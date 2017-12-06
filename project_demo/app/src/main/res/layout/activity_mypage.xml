@@ -53,10 +53,8 @@
             app:backgroundTint="@android:color/white"
             app:srcCompat="@mipmap/ic_add_white_24dp"
             tools:backgroundTint="@android:color/background_dark"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
             android:layout_above="@id/my_btm_nav"/>
 
     </RelativeLayout>

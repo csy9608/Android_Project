@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +44,7 @@ public class UploadActivity extends AppCompatActivity {
     private EditText upload_etc_et;
     private Button upload_btn_upload;
     private Bitmap bitmap;
+    private BottomNavigationView bottomNavigationItemView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +57,26 @@ public class UploadActivity extends AppCompatActivity {
         upload_outer_et = (EditText)findViewById(R.id.upload_outer_et);
         upload_iv = (ImageView) findViewById(R.id.upload_iv);
         upload_btn_upload = (Button) findViewById(R.id.upload_btn_upload);
+
+        bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.upload_btm_nav);
+        bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_weather:
+                        startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
+                        break;
+                    case R.id.action_main:
+                        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+                        break;
+                    case R.id.action_my:
+                        startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         upload_iv.setOnClickListener(new View.OnClickListener() {
             @Override
