@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/regis_et_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/regis_et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PASSWORD"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/regis_et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="NAME"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/regis_et_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="AGE"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/regis_et_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="GENDER"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/regis_btn_regis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTER" />
+
+</LinearLayout>
