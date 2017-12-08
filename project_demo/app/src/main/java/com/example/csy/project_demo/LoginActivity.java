@@ -1,6 +1,7 @@
 package com.example.csy.project_demo;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -16,9 +17,12 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by csy on 2017-11-17.
@@ -26,6 +30,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity{
 
+    String imagurl;
+    String temp;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,12 @@ public class LoginActivity extends AppCompatActivity{
         final EditText login_et_password = (EditText)findViewById(R.id.login_et_password);
         final Button login_btn_login = (Button)findViewById(R.id.login_btn_login);
         final TextView login_tv_regis = (TextView) findViewById(R.id.login_tv_regis);
+        WeatherConnection weatherConnection = new WeatherConnection();
+
+        AsyncTask<String, String, String> result = weatherConnection.execute("", "");
+
+
+
 
         login_tv_regis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +76,10 @@ public class LoginActivity extends AppCompatActivity{
                                         .create()
                                         .show();
                                 CurrentInfo.SET(CurrentInfo.ID, userID);
-                                startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
+                                Intent intent=new Intent(getApplicationContext(),WeatherActivity.class);
+                                intent.putExtra("imagurl",imagurl);
+                                intent.putExtra("temp",temp);
+                                startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("로그인에 실패했습니다.")
@@ -83,5 +98,43 @@ public class LoginActivity extends AppCompatActivity{
                 queue.add(volleyRequest);
             }
         });
+    }
+
+    public class WeatherConnection extends AsyncTask<String, String, String>{
+
+        // 백그라운드에서 작업하게 한다
+        @Override
+        protected String doInBackground(String... params) {
+
+            try{
+
+                String path = "http://weather.naver.com/rgn/townWetr.nhn?naverRgnCd=09650510";
+
+                org.jsoup.nodes.Document document = Jsoup.connect(path).get();
+
+                Elements elements = document.select("em");
+                Elements imag = document.select("img[class=ico_wt]");
+
+                System.out.println(elements);
+                System.out.println(imag+"imag");
+                imagurl=imag.attr("abs:src");
+                System.out.println(imagurl+"   imagurl");
+
+                org.jsoup.nodes.Element targetElement = elements.get(2);
+
+                String text = targetElement.text();
+                temp=text;
+
+                System.out.println(text);
+
+                CurrentInfo.SET(CurrentInfo.TEMPER,text);
+
+                return text;
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

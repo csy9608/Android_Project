@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/weather_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/weather_text"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/weather_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="weather" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="오늘의 날씨"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/weather_btm_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@drawable/nav_item_color_state"
-            app:itemTextColor="@drawable/nav_item_color_state"
-            app:menu="@menu/bottom_navigation_main"
-            android:layout_below="@id/mypage_lv"
-            android:layout_alignParentBottom="true">
-        </android.support.design.widget.BottomNavigationView>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/weather_btm_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/nav_item_color_state"
+        app:itemTextColor="@drawable/nav_item_color_state"
+        app:menu="@menu/bottom_navigation_main"
+        android:layout_below="@id/mypage_lv"
+        android:layout_alignParentBottom="true">
+    </android.support.design.widget.BottomNavigationView>
 
-    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
