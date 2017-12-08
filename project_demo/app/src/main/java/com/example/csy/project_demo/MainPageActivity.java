@@ -1,26 +1,19 @@
 package com.example.csy.project_demo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -38,12 +31,10 @@ import java.util.Map;
  * Created by csy on 2017-12-01.
  */
 
-import static android.content.ContentValues.TAG;
-
 public class MainPageActivity extends AppCompatActivity {
     private ListView main_lv;
-    private MainPageItemListAdapter adapter;
-    private List<MainPageItem> mMainPageItemList;
+    private MainPageListAdapter adapter;
+    private List<BoardItem> mMainPageItemList;
     private BottomNavigationView bottomNavigationItemView;
     public Handler mHandler;
 //    public View ftView;
@@ -84,7 +75,7 @@ public class MainPageActivity extends AppCompatActivity {
         mHandler = new MyHandler();
 
         // Init adapter
-        adapter = new MainPageItemListAdapter(MainPageActivity.this, mMainPageItemList);
+        adapter = new MainPageListAdapter(MainPageActivity.this, mMainPageItemList);
         main_lv.setAdapter(adapter);
 
         main_lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -126,7 +117,7 @@ public class MainPageActivity extends AppCompatActivity {
                     break;
                 case 1:
                     // Update data adapter
-                    adapter.addListItemToAdapter((ArrayList<MainPageItem>)msg.obj);
+                    adapter.addListItemToAdapter((ArrayList<BoardItem>)msg.obj);
                     // Remove loading view after update listview
                     //       IvProduct.removeFooterView(ftView);
                     isLoading=false;
@@ -137,9 +128,9 @@ public class MainPageActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<MainPageItem> getMoreData(){
+    private ArrayList<BoardItem> getMoreData(){
 
-        final ArrayList<MainPageItem> lst = new ArrayList<>();
+        final ArrayList<BoardItem> lst = new ArrayList<>();
         // add list
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
@@ -153,7 +144,7 @@ public class MainPageActivity extends AppCompatActivity {
                     currentID = jsonResponse.getInt("end");
 
                     for(int i=0 ; i<boardIDs.length(); i++){
-                        lst.add(new MainPageItem(boardIDs.getInt(i), imagePaths.getString(i) ,boardLikes.getInt(i), imageTagss.getString(i)));
+                        lst.add(new BoardItem(boardIDs.getInt(i), imagePaths.getString(i) ,boardLikes.getInt(i), imageTagss.getString(i)));
                     }
 
                 }catch (JSONException e){
@@ -177,7 +168,7 @@ public class MainPageActivity extends AppCompatActivity {
         public void run() {
             // Add footer view after get data
             mHandler.sendEmptyMessage(0);
-            ArrayList<MainPageItem> lstResult = getMoreData();
+            ArrayList<BoardItem> lstResult = getMoreData();
 
             // Delay time to show loading footer when debug, remove it when releasing
             try {

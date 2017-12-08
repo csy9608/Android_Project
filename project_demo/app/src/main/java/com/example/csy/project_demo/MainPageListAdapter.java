@@ -28,16 +28,16 @@ import static android.content.ContentValues.TAG;
  * Created by csy on 2017-12-04.
  */
 
-public class MainPageItemListAdapter extends BaseAdapter{
+public class MainPageListAdapter extends BaseAdapter{
     private Context mContext;
-    private List<MainPageItem> mMainPageItemList;
+    private List<BoardItem> mMainPageItemList;
 
-    public MainPageItemListAdapter(Context mContext, List<MainPageItem> mMainPageItem) {
+    public MainPageListAdapter(Context mContext, List<BoardItem> mBoardItem) {
         this.mContext = mContext;
-        this.mMainPageItemList = mMainPageItem;
+        this.mMainPageItemList = mBoardItem;
     }
 
-    public void addListItemToAdapter(List<MainPageItem> list){
+    public void addListItemToAdapter(List<BoardItem> list){
         mMainPageItemList.addAll(list);
         this.notifyDataSetChanged();
     }
@@ -60,8 +60,6 @@ public class MainPageItemListAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
     // make view
-
-        Log.i(TAG, "Adapter " );
 
         final View v = View.inflate(mContext, R.layout.item_main_page_list, null);
         final TextView mitm_like_tv = (TextView) v.findViewById(R.id.mitm_like_tv);

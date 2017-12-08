@@ -4,14 +4,14 @@ package com.example.csy.project_demo;
  * Created by csy on 2017-12-04.
  */
 
-public class MainPageItem {
+public class BoardItem {
     private int boardID;
     private String imagePath;
     private int boardLikes;
     private String imageTags;
 
     // consturctor
-    public MainPageItem(int boardID, String imagePath, int boardLikes, String imageTags) {
+    public BoardItem(int boardID, String imagePath, int boardLikes, String imageTags) {
         this.boardID = boardID;
         this.imagePath = imagePath;
         this.boardLikes = boardLikes;
