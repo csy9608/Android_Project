@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,12 +33,12 @@ public class WeatherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
 
 
-        Intent intent=getIntent();
+       // Intent intent=getIntent();
 
         TextView weather_text=(TextView)findViewById(R.id.weather_text);
         weather_image=(ImageView)findViewById(R.id.weather_image);
-        path=intent.getStringExtra("imagurl").toString();
-        String temp=intent.getStringExtra("temp").toString();
+        path=CurrentInfo.GET(CurrentInfo.URL);
+        String temp=CurrentInfo.GET(CurrentInfo.WEATHER).toString();
         weather_text.setText(temp);
         loadImageFromUrl(path);
 
@@ -78,14 +79,12 @@ public class WeatherActivity extends AppCompatActivity {
 
                     }
                 });
-        new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
-            }
-        }, 3000); // start intent after 3000 milliseconds
+
+    }
+
+    public void goNext()
+    {
+        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
     }
 
 

@@ -78,7 +78,9 @@ public class LoginActivity extends AppCompatActivity{
                                 CurrentInfo.SET(CurrentInfo.ID, userID);
                                 Intent intent=new Intent(getApplicationContext(),WeatherActivity.class);
                                 intent.putExtra("imagurl",imagurl);
+                                CurrentInfo.SET(CurrentInfo.URL,imagurl);
                                 intent.putExtra("temp",temp);
+                                CurrentInfo.SET(CurrentInfo.WEATHER,temp);
                                 startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
