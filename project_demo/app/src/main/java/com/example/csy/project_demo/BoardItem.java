@@ -9,13 +9,15 @@ public class BoardItem {
     private String imagePath;
     private int boardLikes;
     private String imageTags;
+    private boolean liked;
 
     // consturctor
-    public BoardItem(int boardID, String imagePath, int boardLikes, String imageTags) {
+    public BoardItem(int boardID, String imagePath, int boardLikes, String imageTags, boolean liked) {
         this.boardID = boardID;
         this.imagePath = imagePath;
         this.boardLikes = boardLikes;
         this.imageTags = imageTags;
+        this.liked = liked;
     }
 
     // getter
@@ -35,6 +37,10 @@ public class BoardItem {
         return imageTags;
     }
 
+    public boolean getLiked() {
+        return liked;
+    }
+
     // setter
     public void setBoardID(int boardID) {
         this.boardID = boardID;
@@ -51,4 +57,9 @@ public class BoardItem {
     public void setImageTags(String imageTags) {
         this.imageTags = imageTags;
     }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
 }
+

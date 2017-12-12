@@ -141,10 +141,11 @@ public class MainPageActivity extends AppCompatActivity {
                     JSONArray imagePaths = jsonResponse.getJSONArray("imagePath");
                     JSONArray imageTagss = jsonResponse.getJSONArray("imageTags");
                     JSONArray boardLikes = jsonResponse.getJSONArray("boardLikes");
+                    JSONArray liked = jsonResponse.getJSONArray("liked");
                     currentID = jsonResponse.getInt("end");
 
                     for(int i=0 ; i<boardIDs.length(); i++){
-                        lst.add(new BoardItem(boardIDs.getInt(i), imagePaths.getString(i) ,boardLikes.getInt(i), imageTagss.getString(i)));
+                        lst.add(new BoardItem(boardIDs.getInt(i), imagePaths.getString(i) ,boardLikes.getInt(i), imageTagss.getString(i), liked.getBoolean(i)));
                     }
 
                 }catch (JSONException e){
@@ -154,6 +155,7 @@ public class MainPageActivity extends AppCompatActivity {
         };
 
         params.put("start", Integer.toString(currentID));
+        params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
         params.put("temperature", CurrentInfo.GET(CurrentInfo.TEMPER));
         params.put("limit",Integer.toString(limit));
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MAINPAGE, params, listener);

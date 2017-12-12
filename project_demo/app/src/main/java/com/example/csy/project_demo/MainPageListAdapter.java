@@ -79,6 +79,7 @@ public class MainPageListAdapter extends BaseAdapter{
 
                             if(success){
                                 int boardLikes = jsonResponse.getInt("boardLikes");
+                                Log.i("Main", "MainPage - " + "success");
                                 mMainPageItemList.get(position).setBoardLikes(boardLikes);
                                 mitm_like_tv.setText(String.valueOf(mMainPageItemList.get(position).getBoardLikes()));
                             }
@@ -90,6 +91,7 @@ public class MainPageListAdapter extends BaseAdapter{
 
                 Map<String ,String > params = new HashMap<>();
                 params.put("boardID", Integer.toString(mMainPageItemList.get(position).getBoardID()));
+                params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
 
                 if(!isChecked)
                     params.put("undo", Boolean.toString(true));
@@ -103,6 +105,10 @@ public class MainPageListAdapter extends BaseAdapter{
         mitm_like_tv.setText(String.valueOf(mMainPageItemList.get(position).getBoardLikes()));
         mitm_tags_tv.setText(mMainPageItemList.get(position).getImageTags());
         Picasso.with(mContext).load(mMainPageItemList.get(position).getImagePath()).into(mitm_iv);
+
+        if(mMainPageItemList.get(position).getLiked()){
+            mitm_like_btn.setChecked(true);
+        }
 
         // save product id
         v.setTag(mMainPageItemList.get(position).getBoardID());
