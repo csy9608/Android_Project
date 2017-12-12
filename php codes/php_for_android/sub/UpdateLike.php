@@ -9,25 +9,40 @@
   $con = mysqli_connect($db_server, $db_id , $db_password, $db_name);
   $boardID = $_POST['boardID'];
   $userID = $_POST['userID'];
+  $exist = true;
 
   $response = array();
-  $response['success'] = false;
+  $response['success'] = true;
 
-  if(isset($_POST['undo'])){
+  $query0 = "SELECT likedUser FROM BOARD WHERE likedUser LIKE '%/$userID/%' AND boardID=$boardID";
+  $result0 = mysqli_query($con, $query0);
+  if (mysql_num_rows($result0)==0) {
+      $exist = false;
+  }
+
+
+  if($exist==true && isset($_POST['undo'])){
     $query = "UPDATE BOARD SET boardLikes=boardLikes-1, likedUser=REPLACE(likedUser, '/$userID/'', '') WHERE boardID=$boardID";
   }
-  else{
+  else if($exist==false && !isset($_POST['undo'])){
     $query = "UPDATE BOARD SET boardLikes=boardLikes+1, likedUser=CONCAT(likedUser, '/$userID/')  WHERE boardID=$boardID";
   }
+  else{
+        $response['success']=false;
+  }
 
-  $result = mysqli_query($con, $query);
+  if($response['success']==true){
+    $result = mysqli_query($con, $query);
 
-  if($result){
-    $response['success'] = true;
-    $query2 = "SELECT boardLikes FROM BOARD WHERE boardID=$boardID";
-    $result2 = mysqli_query($con, $query2);
-    if($row = mysqli_fetch_array($result2))
-      $response['boardLikes'] = $row['boardLikes'];
+    if($result){
+      $query2 = "SELECT boardLikes FROM BOARD WHERE boardID=$boardID";
+      $result2 = mysqli_query($con, $query2);
+      if($row = mysqli_fetch_array($result2))
+        $response['boardLikes'] = $row['boardLikes'];
+    }
+    else{
+      $response['success'] = false;
+    }
   }
 
   mysqli_close($con);

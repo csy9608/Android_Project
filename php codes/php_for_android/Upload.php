@@ -30,7 +30,7 @@
       $row1 = mysqli_fetch_array($result1);
       $tempID = $row1['tempID'];
 
-      $query2 = "INSERT INTO BOARD(userID, boardDate, imagePath, imageTags, tempID) VALUES ('$userID', now(), '$imagePath','$imageTags', $tempID)";
+      $query2 = "INSERT INTO BOARD(userID, boardDate, imagePath, imageTags, tempID, likedUser) VALUES ('$userID', now(), '$imagePath','$imageTags', $tempID, "/")";
       if(mysqli_query($con, $query2)){
         $response['success'] = true;
         $query3 = "SELECT boardID FROM BOARD WHERE imagePath='$imagePath' AND userID='$userID'";
