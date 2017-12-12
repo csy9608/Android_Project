@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tutorial2 - php</title>
+  </head>
+  <body>
+    <h1>*php 가이드*</h1>
+    <br><div>
+      <p>1. 상세보기 php<a href="http://csy9608.cafe24.com/Detail.php" target="_blank">http://csy9608.cafe24.com/Detail.php</a></p>
+      <p>&emsp; IN: boardID / OUT: boardID, boardDate, imagePath, imageTags</p>
+    </div>
+
+      <br><div>
+      <p>2. 로그인 php &nbsp;<a href="http://csy9608.cafe24.com/Login.php" target="_blank">http://csy9608.cafe24.com/Login.php</a></p>
+      <p>&emsp; IN: userID, userPassword / OUT: userID, success</p>
+      </div>
+
+      <br><div>
+      <p>3. 메인페이지 php (완성)&nbsp;<a href="http://csy9608.cafe24.com/MainPage.php" target="_blank">http://csy9608.cafe24.com/MainPage.php</a></p>
+      <p>&emsp; IN: start, align_likes, temperature, limit / OUT: boardID, imagePath, imageTags, boardLikes, end </p>
+    <p>&emsp; 웹으로 결과 한번 확인해보시면 뭔지 아실거에요, </p>
+    <p>&emsp; start에다 맨 처음에는 0을 넣으시고 그 다음에는 end로 받은 값을 넣어주시면 됩니다.</p>
+    <p>&emsp; align_likes에다 값을 넣으시면 좋아요순 정렬, 기본값은 최신순입니다. limit은 받아올 개수, temperature는 오늘의 평균온도</p>
+      </div>
+
+      <br><div>
+      <p>4. 마이페이지 php (완성)&nbsp;<a href="http://csy9608.cafe24.com/MyPage.php" target="_blank">http://csy9608.cafe24.com/MyPage.php</a></p>
+      <p>&emsp; IN: userID, start, align_likes, limit / OUT: boardID, imagePath, imageTags, boardLikes, end </p>
+      <p>&emsp; 메인페이지와 같은방식으로 동작합니다. 단지 userID가 생기고 temperature가 없는 차이</p>
+      </div>
+
+      <br><div>
+      <p>5. 회원가입 php &nbsp;<a href="http://csy9608.cafe24.com/SignUp.php" target="_blank">http://csy9608.cafe24.com/SignUp.php</a></p>
+      <p>&emsp; IN: userID, userPassword, userName, userAge, userGender / OUT: userID, success</p>
+      </div>
+
+      <br><div>
+      <p>6. 업로드 php (완성) &nbsp;<a href="http://csy9608.cafe24.com/Upload.php" target="_blank">http://csy9608.cafe24.com/Upload.php</a></p>
+      <p>&emsp; IN: userID, temperature, encoded_string(이미지 base64 encoded string), imageTags / OUT: boardID, success</p>
+      <p>&emsp; boardID는 업로드된 게시물의 boardID</p>
+      </div>
+
+      <br><div>
+      <p>7. 아이디 확인 php &nbsp;<a href="http://csy9608.cafe24.com/CheckId.php" target="_blank">http://csy9608.cafe24.com/CheckId.php</a></p>
+      <p>&emsp; IN:  userID / OUT: exists(아이디 존재여부)</p>
+      </div>
+
+      <br><div>
+      <p>8. 좋아요 php &nbsp;<a href="http://csy9608.cafe24.com/UpdateLike.php" target="_blank">http://csy9608.cafe24.com/UpdateLike.php</a></p>
+      <p>&emsp; IN: boardID, undo / OUT: success, boardLikes</p>
+      </div>
+
+      <br><div>
+      <p>9. 내 정보 수정 php &nbsp;<a href="http://csy9608.cafe24.com/ModifyMyInfo.php" target="_blank">http://csy9608.cafe24.com/ModifyMyInfo.php</a></p>
+      <p>&emsp; IN: set, delete,  userID, userName, (userPassword), userAge, userGender /  OUT: (userID, userName, userAge, userGender), success</p>
+      <p>&emsp; 수정은 set, 삭제는 delete 회원정보 보기가 디폴트, userPassword는 기존 비밀번호 확인 등을 한 뒤에 보낼 것, 안보내줘도 됨</p>
+      <p>&emsp; 회원정보 보기인 경우에는 괄호 안의 값도 반환, 그 외에는(수정이나 삭제인 경우) 반환안함</p>
+      </div>
+
+      <br><div>
+      <p>10. 게시물 수정/삭제 php  &nbsp;<a href="http://csy9608.cafe24.com/ModifyBoard.php" target="_blank">http://csy9608.cafe24.com/ModifyBoard.php</a></p>
+      <p>&emsp; IN: userID, boardID, ( encoded_string, imageTags,) delete /  OUT: success, authority</p>
+      <p>&emsp; 기본적으로 수정모드, delete에 값을 보내면 삭제모드</p>
+      <p>&emsp; 게시물 글쓴이가 현재 userID가 아닐 경우에 authority가 false, 접근 권한 없음. 수정 삭제 안됨</p>
+      <p>&emsp; 현재 ID가 Admin인 경우 관리자이므로 authority 무조건 true</p>
+      </div>
+
+      <br><br><p>****************** 우리 빨리 끝내버려요 !!! *********************</p>
+      <p>&emsp; ** 웹으로 테스트 한 코드라 IN에 'submit'값을 true이렇게 뭐라도 넣어야 돌아가요(이건 나중에 수정하겠습니다.)</p><br>
+      <p>&emsp; ** IN은 volley로 접속할때 보내주는 Map의 키 값이름이에요 / OUT은 접속후 받아오는 Map의 키 값이름입니다. 보내드린 table 스키마 참고</p><br>
+    </p>
+  </body>
+</html>
