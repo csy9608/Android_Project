@@ -21,11 +21,10 @@
   }
 
   if($exist == true && isset($_POST['undo'])){
-    $query = "UPDATE BOARD SET boardLikes=boardLikes-1, likedUser=REPLACE(likedUser, '/$userID/'', '') WHERE boardID=$boardID";
+    $query = "UPDATE BOARD SET boardLikes=boardLikes-1,likedUser=REPLACE(likedUser, '/$userID/', '') WHERE boardID=$boardID";
   }
   else if($exist == false && !isset($_POST['undo'])){
-    $query = "UPDATE BOARD SET boardLikes=boardLikes+1, likedUser=CONCAT(likedUser, '/$userID/')  WHERE boardID=$boardID";
-        echo $query;
+    $query = "UPDATE BOARD SET boardLikes=boardLikes+1,likedUser=CONCAT(likedUser, '/$userID/')  WHERE boardID=$boardID";
   }
   else{
     $response['success']=false;
@@ -50,21 +49,3 @@
   mysqli_close($con);
   echo json_encode($response);
  ?>
-
-
- <!DOCTYPE html>
- <html>
-   <head>
-     <meta charset="utf-8">
-     <title>
-
-     </title>
-   </head>
-   <body>
-     <form action="UpdateLike.php" method="post">
-       <input type="text" name="userID">
-       <input type="number" name="boardID">
-       <input type="submit">
-     </form>
-   </body>
- </html>

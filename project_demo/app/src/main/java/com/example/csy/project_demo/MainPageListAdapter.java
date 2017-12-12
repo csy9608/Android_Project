@@ -93,8 +93,9 @@ public class MainPageListAdapter extends BaseAdapter{
                 params.put("boardID", Integer.toString(mMainPageItemList.get(position).getBoardID()));
                 params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
 
-                if(!isChecked)
+                if(!isChecked){
                     params.put("undo", Boolean.toString(true));
+                }
 
                 VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.ULIKE, params, listener);
                 RequestQueue queue = Volley.newRequestQueue(mContext);
