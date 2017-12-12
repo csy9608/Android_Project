@@ -103,10 +103,12 @@ public class DetailActivity extends AppCompatActivity{
                 };
 
                 Map<String ,String > params = new HashMap<>();
+                params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
                 params.put("boardID", Integer.toString(boardID));
 
-                if(!isChecked)
+                if(!isChecked){
                     params.put("undo", Boolean.toString(true));
+                }
 
                 VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.ULIKE, params, listener);
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -173,6 +175,7 @@ public class DetailActivity extends AppCompatActivity{
                     int boardLikes = jsonResponse.getInt("boardLikes");
                     String imagePath = jsonResponse.getString("imagePath");
                     String imageTags = jsonResponse.getString("imageTags");
+                    boolean liked = jsonResponse.getBoolean("liked");
 
                     Picasso.with(getApplicationContext()).load(imagePath).into(detail_iv);
 
@@ -180,6 +183,10 @@ public class DetailActivity extends AppCompatActivity{
                     detail_userID_tv.setText(userID);
                     detail_like_tv.setText(Integer.toString(boardLikes));
                     detail_tags_tv.setText(imageTags);
+
+                    if(liked){
+                        detail_like_btn.setChecked(true);
+                    }
 
                     if(CurrentInfo.GET(CurrentInfo.ID).equals(userID) || CurrentInfo.GET(CurrentInfo.ID).equals("Admin")){
                         detail_modify_btn.setVisibility(View.VISIBLE);
@@ -192,6 +199,7 @@ public class DetailActivity extends AppCompatActivity{
         };
 
         Map<String,String> params = new HashMap<>();
+        params.put("userID",CurrentInfo.GET(CurrentInfo.ID));
         params.put("boardID", Integer.toString(boardID));
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.DETAIL, params, listener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
