@@ -8,6 +8,8 @@
 
   $con = mysqli_connect($db_server, $db_id , $db_password, $db_name);
   $boardID = $_POST['boardID'];
+  $userID = $_POST['userID'];
+
   $query = "SELECT * , IF(likedUser LIKE '%/$userID/%', 'true', 'false')liked FROM BOARD WHERE boardID=$boardID";
   $result = mysqli_query($con, $query);
 
