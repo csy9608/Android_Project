@@ -51,6 +51,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
     private int boardID;
     private String imagePath;
     private String imageTags;
+    private boolean check=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -149,8 +150,9 @@ public class ModifyBoardActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
                 params.put("temperature", CurrentInfo.GET(CurrentInfo.TEMPER));
-                params.put("encoded_string", imageToString(bitmap));
                 params.put("imageTags",tags);
+                if(check)
+                    params.put("encoded_string", imageToString(bitmap));
                 VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.UPLOAD,params, listener);
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(volleyRequest);
@@ -186,23 +188,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
+        check=true;
         return Base64.encodeToString(imgBytes, Base64.DEFAULT);
-    }
-
-    private void loadImageFromUrl(String url) {
-        Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(upload_iv, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-
-                    }
-
-                    @Override
-                    public void onError() {
-
-                    }
-                });
-
     }
 }
