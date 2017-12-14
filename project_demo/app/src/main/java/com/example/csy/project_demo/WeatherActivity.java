@@ -41,6 +41,7 @@ public class WeatherActivity extends AppCompatActivity {
         String temp=CurrentInfo.GET(CurrentInfo.WEATHER).toString();
         weather_text.setText(temp);
         loadImageFromUrl(path);
+/*
         new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -48,7 +49,7 @@ public class WeatherActivity extends AppCompatActivity {
             {
                 goNext();
             }
-        }, 5000);
+        }, 5000);*/
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.weather_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -89,9 +90,9 @@ public class WeatherActivity extends AppCompatActivity {
 
     }
 
-    public void goNext()
+    public void goNext(View v)
     {
-        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+        startActivity(new Intent(WeatherActivity.this, MainPageActivity.class));
 
     }
 }
