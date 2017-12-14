@@ -45,6 +45,8 @@ public class DetailActivity extends AppCompatActivity{
     private Button  detail_delete_btn;
     private TextView detail_tags_tv;
     private int boardID;
+    private String imagePath;
+    private String imageTags;
     private BottomNavigationView bottomNavigationItemView;
 
     @Override
@@ -122,6 +124,8 @@ public class DetailActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ModifyBoardActivity.class );
                 intent.putExtra("boardID", boardID);
+                intent.putExtra("imagePath",imagePath);
+                intent.putExtra("imageTags",imageTags);
                 startActivity(intent);
             }
         });
@@ -173,8 +177,8 @@ public class DetailActivity extends AppCompatActivity{
                     String userID = jsonResponse.getString("userID");
                     String boardDate = jsonResponse.getString("boardDate");
                     int boardLikes = jsonResponse.getInt("boardLikes");
-                    String imagePath = jsonResponse.getString("imagePath");
-                    String imageTags = jsonResponse.getString("imageTags");
+                    imagePath = jsonResponse.getString("imagePath");
+                    imageTags = jsonResponse.getString("imageTags");
                     boolean liked = jsonResponse.getBoolean("liked");
 
                     Picasso.with(getApplicationContext()).load(imagePath).into(detail_iv);
@@ -188,10 +192,7 @@ public class DetailActivity extends AppCompatActivity{
                         detail_like_btn.setChecked(true);
                     }
 
-                    if(CurrentInfo.GET(CurrentInfo.ID).equals(userID) || CurrentInfo.GET(CurrentInfo.ID).equals("Admin")){
-                        detail_modify_btn.setVisibility(View.VISIBLE);
-                        detail_delete_btn.setVisibility(View.VISIBLE);
-                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

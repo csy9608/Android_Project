@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -48,6 +49,8 @@ public class ModifyBoardActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private BottomNavigationView bottomNavigationItemView;
     private int boardID;
+    private String imagePath;
+    private String imageTags;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +66,19 @@ public class ModifyBoardActivity extends AppCompatActivity {
         upload_btn_upload = (Button) findViewById(R.id.upload_btn_upload);
 
         boardID=intent.getIntExtra("boardID",0);
+        imagePath=intent.getStringExtra("imagePath");
+        imageTags=intent.getStringExtra("imageTags");
+
+        Picasso.with(getApplicationContext()).load(imagePath).into(upload_iv);
+        String[] tag = imageTags.split("\\+");
+        upload_outer_et.setText(tag[0].toString());
+        upload_inner_et.setText(tag[1].toString());
+        upload_bottom_et.setText(tag[2].toString());
+        upload_etc_et.setText(tag[3].toString());
+
+
+
+
 
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.upload_btm_nav);
@@ -141,37 +157,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
             }
         });
 
-        Response.Listener<String> listener = new Response.Listener<String >() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    boolean success = jsonResponse.getBoolean("success");
-                    boolean authority=jsonResponse.getBoolean("authority");
-                    String tags=jsonResponse.getString("imageTags");
-                    String imagePath=jsonResponse.getString("imagePath");
 
-
-                    String[] tag = new String[4];
-                    tag=tags.split("\\+");
-                    upload_outer_et.setText(tag[0].toString());
-                    upload_inner_et.setText(tag[1].toString());
-                    upload_bottom_et.setText(tag[2].toString());
-                    upload_etc_et.setText(tag[3].toString());
-
-                    loadImageFromUrl(imagePath);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Map<String ,String > params = new HashMap<>();
-        params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
-        params.put("boardID", Integer.toString(boardID));
-        VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD,params, listener);
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        queue.add(volleyRequest);
     }
 
     private void selectImage()
