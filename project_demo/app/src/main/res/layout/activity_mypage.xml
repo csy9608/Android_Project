@@ -32,7 +32,7 @@
         <ListView
             android:id="@+id/mypage_lv"
             android:layout_width="match_parent"
-            android:layout_height="460dp"
+            android:layout_height="400dp"
             android:layout_below="@id/mypage_user_ly">
         </ListView>
 
