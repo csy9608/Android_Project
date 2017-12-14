@@ -169,6 +169,9 @@ public class ModifyBoardActivity extends AppCompatActivity {
         Map<String ,String > params = new HashMap<>();
         params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
         params.put("boardID", Integer.toString(boardID));
+        VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD,params, listener);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(volleyRequest);
     }
 
     private void selectImage()
