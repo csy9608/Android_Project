@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -40,18 +41,19 @@ import java.util.Map;
 public class ModifyBoardActivity extends AppCompatActivity {
 
     final private int IMG_REQUEST = 1;
-    private ImageView upload_iv;
-    private EditText upload_outer_et;
-    private EditText upload_inner_et;
-    private EditText upload_bottom_et;
-    private EditText upload_etc_et;
-    private Button upload_btn_upload;
+
     private Bitmap bitmap;
     private BottomNavigationView bottomNavigationItemView;
     private int boardID;
     private String imagePath;
     private String imageTags;
     private boolean check=false;
+    private Button modify_btn_reset_tag;
+    private Button modify_btn_add_tag;
+    private EditText modfiy_et_tag;
+    private TextView modify_tv_tags;
+    private ImageView modify_iv;
+    private Button modify_btn_modify;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,28 +61,19 @@ public class ModifyBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
         Intent intent=getIntent();
 
-        upload_etc_et = (EditText)findViewById(R.id.upload_etc_et);
-        upload_bottom_et = (EditText)findViewById(R.id.upload_bottom_et);
-        upload_inner_et = (EditText)findViewById(R.id.upload_inner_et);
-        upload_outer_et = (EditText)findViewById(R.id.upload_outer_et);
-        upload_iv = (ImageView) findViewById(R.id.upload_iv);
-        upload_btn_upload = (Button) findViewById(R.id.upload_btn_upload);
+        modify_btn_reset_tag = (Button)findViewById(R.id.modify_btn_reset_tag);
+        modify_btn_add_tag = (Button)findViewById(R.id.modify_btn_add_tag);
+        modfiy_et_tag = (EditText)findViewById(R.id.modfiy_et_tag);
+        modify_tv_tags = (TextView)findViewById(R.id.modify_tv_tags);
+        modify_iv = (ImageView)findViewById(R.id.modify_iv);
+        modify_btn_modify = (Button)findViewById(R.id.modify_btn_modify);
 
         boardID=intent.getIntExtra("boardID",0);
         imagePath=intent.getStringExtra("imagePath");
         imageTags=intent.getStringExtra("imageTags");
 
-        Picasso.with(getApplicationContext()).load(imagePath).into(upload_iv);
-        String[] tag = imageTags.split("\\+");
-        upload_outer_et.setText(tag[0].toString());
-        upload_inner_et.setText(tag[1].toString());
-        upload_bottom_et.setText(tag[2].toString());
-        upload_etc_et.setText(tag[3].toString());
-
-
-
-
-
+        Picasso.with(getApplicationContext()).load(imagePath).into(modify_iv);
+        modify_tv_tags.setText(imageTags);
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.upload_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -101,22 +94,43 @@ public class ModifyBoardActivity extends AppCompatActivity {
             }
         });
 
+        modify_btn_add_tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(modfiy_et_tag.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"내용을 입력해주세요 !",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    modify_tv_tags.setText(modify_tv_tags.getText().toString()+ " #" + modfiy_et_tag.getText());
+                    modfiy_et_tag.setText("");
+                }
+            }
+        });
 
+        modify_btn_reset_tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modify_tv_tags.setText("");
+            }
+        });
 
-
-
-        upload_iv.setOnClickListener(new View.OnClickListener() {
+        modify_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
             }
         });
-        upload_btn_upload.setOnClickListener(new View.OnClickListener() {
+
+        modify_btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tags = upload_outer_et.getText().toString() + upload_inner_et.getText().toString() + upload_bottom_et.getText().toString() + upload_etc_et.getText().toString();
 
-                Response.Listener<String> listener  = new Response.Listener<String>() {
+                String tags = modify_tv_tags.getText().toString();
+                if (tags.equals("")) {
+                    Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_LONG).show();
+                }
+                else {
+                Response.Listener<String> listener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -129,8 +143,8 @@ public class ModifyBoardActivity extends AppCompatActivity {
                                         .setPositiveButton("확인", null)
                                         .create()
                                         .show();
-                                upload_iv.setImageResource(0);
-                                upload_iv.setVisibility(View.GONE);
+                                modify_iv.setImageResource(0);
+                                modify_iv.setVisibility(View.GONE);
                                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                                 intent.putExtra("boardID", boardID);
                                 startActivity(intent);
@@ -149,14 +163,15 @@ public class ModifyBoardActivity extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap<>();
                 params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
-                params.put("temperature", CurrentInfo.GET(CurrentInfo.TEMPER));
-                params.put("imageTags",tags);
-                if(check)
+                params.put("boardID", Integer.toString(boardID));
+                params.put("imageTags", tags);
+                if (check)
                     params.put("encoded_string", imageToString(bitmap));
-                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.UPLOAD,params, listener);
+                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD, params, listener);
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(volleyRequest);
             }
+        }
         });
 
 
@@ -177,7 +192,8 @@ public class ModifyBoardActivity extends AppCompatActivity {
             Uri path = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
-                upload_iv.setImageBitmap(bitmap);
+                modify_iv.setImageBitmap(bitmap);
+                check = true;
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -188,7 +204,6 @@ public class ModifyBoardActivity extends AppCompatActivity {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
-        check=true;
         return Base64.encodeToString(imgBytes, Base64.DEFAULT);
     }
 }

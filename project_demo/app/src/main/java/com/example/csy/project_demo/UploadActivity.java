@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,25 +40,45 @@ public class UploadActivity extends AppCompatActivity {
 
     final private int IMG_REQUEST = 1;
     private ImageView upload_iv;
-    private EditText upload_outer_et;
-    private EditText upload_inner_et;
-    private EditText upload_bottom_et;
-    private EditText upload_etc_et;
     private Button upload_btn_upload;
     private Bitmap bitmap;
     private BottomNavigationView bottomNavigationItemView;
+    private Button upload_btn_add_tag;
+    private Button upload_btn_reset_tag;
+    private TextView upload_tv_tags;
+    private EditText upload_et_tag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        upload_etc_et = (EditText)findViewById(R.id.upload_etc_et);
-        upload_bottom_et = (EditText)findViewById(R.id.upload_bottom_et);
-        upload_inner_et = (EditText)findViewById(R.id.upload_inner_et);
-        upload_outer_et = (EditText)findViewById(R.id.upload_outer_et);
         upload_iv = (ImageView) findViewById(R.id.upload_iv);
         upload_btn_upload = (Button) findViewById(R.id.upload_btn_upload);
+        upload_btn_add_tag = (Button) findViewById(R.id.upload_btn_add_tag);
+        upload_btn_reset_tag = (Button) findViewById(R.id.upload_btn_reset_tag);
+        upload_tv_tags = (TextView) findViewById(R.id.upload_tv_tags);
+        upload_et_tag = (EditText) findViewById(R.id.upload_et_tag);
+
+        upload_btn_add_tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(upload_et_tag.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"내용을 입력해주세요 !",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    upload_tv_tags.setText(upload_tv_tags.getText().toString()+ " #" + upload_et_tag.getText());
+                    upload_et_tag.setText("");
+                }
+            }
+        });
+
+        upload_btn_reset_tag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upload_tv_tags.setText("");
+            }
+        });
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.upload_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,7 +109,7 @@ public class UploadActivity extends AppCompatActivity {
         upload_btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tags = upload_outer_et.getText().toString() + upload_inner_et.getText().toString() + upload_bottom_et.getText().toString() + upload_etc_et.getText().toString();
+                String tags = upload_tv_tags.toString();
 
                 Response.Listener<String> listener  = new Response.Listener<String>() {
                     @Override

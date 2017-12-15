@@ -119,17 +119,6 @@ public class DetailActivity extends AppCompatActivity{
         });
 
 
-        detail_modify_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ModifyBoardActivity.class );
-                intent.putExtra("boardID", boardID);
-                intent.putExtra("imagePath",imagePath);
-                intent.putExtra("imageTags",imageTags);
-                startActivity(intent);
-            }
-        });
-
         detail_delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +181,10 @@ public class DetailActivity extends AppCompatActivity{
                         detail_like_btn.setChecked(true);
                     }
 
+                    if(userID.equals(CurrentInfo.GET(CurrentInfo.ID)) || CurrentInfo.GET(CurrentInfo.ID).equals("Admin")){
+                        detail_delete_btn.setVisibility(View.VISIBLE);
+                        detail_modify_btn.setVisibility(View.VISIBLE);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -205,5 +198,19 @@ public class DetailActivity extends AppCompatActivity{
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.DETAIL, params, listener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(volleyRequest);
+
+
+        detail_modify_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ModifyBoardActivity.class );
+                intent.putExtra("boardID", boardID);
+                intent.putExtra("imagePath",imagePath);
+                intent.putExtra("imageTags",imageTags);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }
