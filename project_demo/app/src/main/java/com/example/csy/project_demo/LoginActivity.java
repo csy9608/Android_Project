@@ -1,8 +1,11 @@
 package com.example.csy.project_demo;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -72,17 +75,21 @@ public class LoginActivity extends AppCompatActivity{
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("로그인에 성공했습니다.")
-                                        .setPositiveButton("확인", null)
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                CurrentInfo.SET(CurrentInfo.ID, userID);
+                                                CurrentInfo.SET(CurrentInfo.URL,imagurl);
+                                                CurrentInfo.SET(CurrentInfo.WEATHER,temp);
+                                                Intent intent = new Intent(LoginActivity.this,WeatherActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        })
                                         .create()
                                         .show();
-                                CurrentInfo.SET(CurrentInfo.ID, userID);
-                                Intent intent=new Intent(getApplicationContext(),WeatherActivity.class);
-                                intent.putExtra("imagurl",imagurl);
-                                CurrentInfo.SET(CurrentInfo.URL,imagurl);
-                                intent.putExtra("temp",temp);
-                                CurrentInfo.SET(CurrentInfo.WEATHER,temp);
-                                startActivity(intent);
-                            } else {
+
+                            }
+                            else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("로그인에 실패했습니다.")
                                         .setNegativeButton("다시 시도", null)

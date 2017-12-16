@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TooManyListenersException;
 
 /**
  * Created by csy on 2017-12-01.
@@ -42,11 +45,50 @@ public class MainPageActivity extends AppCompatActivity {
     public int currentID = 0;
     final int limit = 5;
     Map<String,String > params = new HashMap<>();
+    private ToggleButton main_btn_align_latest;
+    private ToggleButton main_btn_align_likest;
+    private boolean align_likes = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        align_likes = getIntent().getBooleanExtra("align_likes",false);
+        main_btn_align_latest = (ToggleButton) findViewById(R.id.main_btn_align_latest);
+        main_btn_align_likest = (ToggleButton) findViewById(R.id.main_btn_align_likest);
+
+        if(align_likes){
+            main_btn_align_likest.setChecked(true);
+            main_btn_align_latest.setChecked(false);
+        }
+        else{
+            main_btn_align_latest.setChecked(true);
+            main_btn_align_likest.setChecked(false);
+        }
+
+        main_btn_align_latest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(align_likes){
+                    main_btn_align_likest.setChecked(false);
+                    Intent intent = new Intent(MainPageActivity.this, MainPageActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        main_btn_align_likest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!align_likes){
+                    main_btn_align_latest.setChecked(false);
+                    Intent intent = new Intent(MainPageActivity.this, MainPageActivity.class);
+                    intent.putExtra("align_likes",true);
+                    startActivity(intent);
+                }
+            }
+        });
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.main_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,13 +96,13 @@ public class MainPageActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_weather:
-                        startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, WeatherActivity.class));
                         break;
                     case R.id.action_main:
-                        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, MainPageActivity.class));
                         break;
                     case R.id.action_my:
-                        startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, MyPageActivity.class));
                         break;
                 }
                 return true;
@@ -82,7 +124,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Do something , Ex: displat msg
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                Intent intent = new Intent(MainPageActivity.this, DetailActivity.class);
                 intent.putExtra("boardID", Integer.parseInt(view.getTag().toString()));
                 startActivity(intent);
             }
@@ -158,8 +200,13 @@ public class MainPageActivity extends AppCompatActivity {
         params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
         params.put("temperature", CurrentInfo.GET(CurrentInfo.TEMPER));
         params.put("limit",Integer.toString(limit));
+
+        if(align_likes){
+            params.put("align_likes","true");
+        }
+
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MAINPAGE, params, listener);
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(MainPageActivity.this);
         queue.add(volleyRequest);
 
         return lst;

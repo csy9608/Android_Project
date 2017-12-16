@@ -10,21 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:text="정렬" />
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
 
         <ToggleButton
-            style="@android:style/Widget.DeviceDefault.Button.Toggle"
+            android:id="@+id/main_btn_align_likest"
+            style="@android:style/Widget.Holo.Button.Toggle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textOff="최신순"
-            android:textOn="좋아요순" />
+            android:textOff="Likest"
+            android:textOn="Likest" />
+
+        <ToggleButton
+            android:id="@+id/main_btn_align_latest"
+            style="@android:style/Widget.Holo.Button.Toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textOff="Latest"
+            android:textOn="Latest" />
+
     </LinearLayout>
 
     <ListView
