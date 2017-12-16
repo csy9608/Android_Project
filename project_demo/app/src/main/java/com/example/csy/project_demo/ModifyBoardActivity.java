@@ -71,12 +71,15 @@ public class ModifyBoardActivity extends AppCompatActivity {
         imageTags=intent.getStringExtra("imageTags");
 
         Picasso.with(getApplicationContext()).load(imagePath).into(upload_iv);
-        String[] tag = imageTags.split("\\+");
-        upload_outer_et.setText(tag[0].toString());
-        upload_inner_et.setText(tag[1].toString());
-        upload_bottom_et.setText(tag[2].toString());
-        upload_etc_et.setText(tag[3].toString());
 
+        /*
+        String[] tag = imageTags.split("#");
+
+        upload_outer_et.setText(tag[1].toString());
+        upload_inner_et.setText(tag[2].toString());
+        upload_bottom_et.setText(tag[3].toString());
+        upload_etc_et.setText(tag[4].toString());
+         */
 
 
 
@@ -131,12 +134,12 @@ public class ModifyBoardActivity extends AppCompatActivity {
                                         .show();
                                 upload_iv.setImageResource(0);
                                 upload_iv.setVisibility(View.GONE);
-                                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                                Intent intent = new Intent(ModifyBoardActivity.this, DetailActivity.class);
                                 intent.putExtra("boardID", boardID);
                                 startActivity(intent);
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                                builder.setMessage("이미지 등록에 실패했습니다.")
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ModifyBoardActivity.this);
+                                builder.setMessage("이미지 등록에 실패했습니다."+success)
                                         .setNegativeButton("다시 시도", null)
                                         .create()
                                         .show();
@@ -153,11 +156,12 @@ public class ModifyBoardActivity extends AppCompatActivity {
                 params.put("imageTags",tags);
                 if(check)
                     params.put("encoded_string", imageToString(bitmap));
-                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.UPLOAD,params, listener);
+                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD,params, listener);
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(volleyRequest);
             }
         });
+
 
 
     }
@@ -188,7 +192,6 @@ public class ModifyBoardActivity extends AppCompatActivity {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
-        check=true;
         return Base64.encodeToString(imgBytes, Base64.DEFAULT);
     }
 }
