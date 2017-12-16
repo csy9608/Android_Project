@@ -136,7 +136,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 System.out.println(text);
 
-                CurrentInfo.SET(CurrentInfo.TEMPER, text.split(" ")[0]);
+                String temperature = text.substring(0,2);
+                CurrentInfo.SET(CurrentInfo.TEMPER, temperature);
 
                 return text;
 

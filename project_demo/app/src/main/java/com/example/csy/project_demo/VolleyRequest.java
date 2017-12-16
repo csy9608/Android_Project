@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class VolleyRequest extends StringRequest{
     public static enum MODE{
-        DETAIL, LOGIN, MAINPAGE, MYPAGE, SIGNUP, UPLOAD, CHECKID, ULIKE, MMYINFO, MBOARD };
+        DETAIL, LOGIN, MAINPAGE, MYPAGE, SIGNUP, UPLOAD, CHECKID, ULIKE, MMYINFO, MBOARD , SEARCHPAGE , GETFREQTAGS};
     private Map<String, String> parameters;
 
     public static String getAdd(MODE mode){
@@ -37,6 +37,10 @@ public class VolleyRequest extends StringRequest{
                 return PhpAddress.ModifyMyInfo;
             case MBOARD:
                 return PhpAddress.ModifyBoard;
+            case SEARCHPAGE:
+                return PhpAddress.SearchPage;
+            case GETFREQTAGS:
+                return PhpAddress.GetFreqTags;
             default:
                 break;
         }

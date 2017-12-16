@@ -6,7 +6,7 @@
 
   $con = mysqli_connect($db_server, $db_id , $db_password, $db_name);
 
-  $temp = $_POST['temper'];
+  $temp = $_POST['temperature'];
   $query0 = "SELECT tempID FROM TEMPERATURE WHERE $temp<=tempMax AND $temp>tempMin";
   $result0 = mysqli_query($con, $query0);
   $row0 = mysqli_fetch_array($result0);
@@ -25,6 +25,7 @@
   $array = array_count_values($array);
 
   arsort($array);
+  $response=array();
   $response['tags']="";
 
   $i=0;
