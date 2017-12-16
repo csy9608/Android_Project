@@ -27,14 +27,10 @@ public class WeatherActivity extends AppCompatActivity {
     String path;
     private BottomNavigationView bottomNavigationItemView;
 
-
     @Override
     protected void onCreate(Bundle instance) {
         super.onCreate(instance);
         setContentView(R.layout.activity_weather);
-
-
-       // Intent intent=getIntent();
 
         TextView weather_text=(TextView)findViewById(R.id.weather_text);
         weather_image=(ImageView)findViewById(R.id.weather_image);
@@ -42,17 +38,6 @@ public class WeatherActivity extends AppCompatActivity {
         String temp=CurrentInfo.GET(CurrentInfo.WEATHER).toString();
         weather_text.setText(temp);
         loadImageFromUrl(path);
-
-        Toast.makeText(getApplicationContext(),CurrentInfo.GET(CurrentInfo.ID),Toast.LENGTH_LONG).show();
-/*
-        new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                goNext();
-            }
-        }, 5000);*/
 
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.weather_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -62,7 +47,6 @@ public class WeatherActivity extends AppCompatActivity {
                     case R.id.action_weather:
                         startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
                         break;
-                    //weather activity 재진입시 에러발생.
                     case R.id.action_main:
                         startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
                         break;
@@ -93,9 +77,4 @@ public class WeatherActivity extends AppCompatActivity {
 
     }
 
-    public void goNext(View v)
-    {
-        startActivity(new Intent(WeatherActivity.this, MainPageActivity.class));
-
-    }
 }

@@ -96,13 +96,13 @@ public class MainPageActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_weather:
-                        startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, WeatherActivity.class));
                         break;
                     case R.id.action_main:
-                        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, MainPageActivity.class));
                         break;
                     case R.id.action_my:
-                        startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                        startActivity(new Intent(MainPageActivity.this, MyPageActivity.class));
                         break;
                 }
                 return true;
@@ -124,7 +124,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Do something , Ex: displat msg
-                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                Intent intent = new Intent(MainPageActivity.this, DetailActivity.class);
                 intent.putExtra("boardID", Integer.parseInt(view.getTag().toString()));
                 startActivity(intent);
             }
@@ -206,7 +206,7 @@ public class MainPageActivity extends AppCompatActivity {
         }
 
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MAINPAGE, params, listener);
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(MainPageActivity.this);
         queue.add(volleyRequest);
 
         return lst;

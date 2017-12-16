@@ -65,6 +65,8 @@ public class MyPageActivity extends AppCompatActivity {
         mypage_btn_align_latest = (ToggleButton) findViewById(R.id.mypage_btn_align_latest);
         mypage_btn_align_likest = (ToggleButton) findViewById(R.id.mypage_btn_align_likest);
 
+        mypage_userID_tv = (TextView) findViewById(R.id.mypage_userID_tv);
+
         if(align_likes){
             mypage_btn_align_likest.setChecked(true);
             mypage_btn_align_latest.setChecked(false);
@@ -97,6 +99,8 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
 
+        mypage_userID_tv.setText(CurrentInfo.GET(CurrentInfo.ID).toString());
+
         bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.mypage_btm_nav);
         bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -126,6 +130,13 @@ public class MyPageActivity extends AppCompatActivity {
 
         mypage_userID_tv = (TextView) findViewById(R.id.mypage_userID_tv);
         mypage_modifyInfo_btn = (Button) findViewById(R.id.mypage_modifyInfo_btn);
+        mypage_modifyInfo_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyPageActivity.this,MyInfoModifyActivity.class));
+            }
+        });
+
         mypage_lv = (ListView) findViewById(R.id.mypage_lv);
 
         myPageItemList = new ArrayList<>();

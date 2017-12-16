@@ -68,7 +68,7 @@
             app:itemIconTint="@drawable/nav_item_color_state"
             app:itemTextColor="@drawable/nav_item_color_state"
             app:menu="@menu/bottom_navigation_main"
-            android:layout_below="@id/mypage_lv">
+            android:layout_alignParentBottom="true">
         </android.support.design.widget.BottomNavigationView>
 
         <android.support.design.widget.FloatingActionButton
@@ -81,6 +81,7 @@
             tools:backgroundTint="@android:color/background_dark"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
             android:layout_above="@id/mypage_btm_nav"/>
 
     </RelativeLayout>
