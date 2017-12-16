@@ -127,16 +127,17 @@ public class DetailActivity extends AppCompatActivity{
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse+"durl34134");
                             Boolean success = jsonResponse.getBoolean("success");
                             if(success){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
                                 builder.setMessage("삭제에 성공했습니다.")
                                         .setPositiveButton("확인", null)
                                         .create()
                                         .show();
                                 startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
                                 builder.setMessage("삭제에 실패했습니다.")
                                         .setNegativeButton("다시 시도", null)
                                         .create()

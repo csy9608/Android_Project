@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +42,8 @@ public class WeatherActivity extends AppCompatActivity {
         String temp=CurrentInfo.GET(CurrentInfo.WEATHER).toString();
         weather_text.setText(temp);
         loadImageFromUrl(path);
+
+        Toast.makeText(getApplicationContext(),CurrentInfo.GET(CurrentInfo.ID),Toast.LENGTH_LONG).show();
 /*
         new Handler().postDelayed(new Runnable()
         {
