@@ -58,7 +58,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload);
+        setContentView(R.layout.activity_modify_board);
         Intent intent=getIntent();
 
         modify_btn_reset_tag = (Button)findViewById(R.id.modify_btn_reset_tag);
