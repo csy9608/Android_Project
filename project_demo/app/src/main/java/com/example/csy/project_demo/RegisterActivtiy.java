@@ -61,7 +61,7 @@ public class RegisterActivtiy extends AppCompatActivity{
             public void onClick(View v) {
                 userID = regis_et_ID.getText().toString();
 
-<<<<<<< HEAD
+
                 String userID = regis_et_ID.getText().toString();
                 String userPassword = regis_et_password.getText().toString();
                 String userName = regis_et_name.getText().toString();
@@ -79,7 +79,7 @@ public class RegisterActivtiy extends AppCompatActivity{
                 IDcheckbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String userID = regis_et_ID.getText().toString();
+                       /* String userID = regis_et_ID.getText().toString();
 
                         Map <String,String> params = new HashMap<>();
                         params.put("userID", userID);
@@ -115,10 +115,9 @@ public class RegisterActivtiy extends AppCompatActivity{
                     }
                 });
 
-                Response.Listener<String> responseListener  = new Response.Listener<String>() {
-=======
+               // Response.Listener<String> responseListener  = new Response.Listener<String>() {
+*/
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
->>>>>>> 9aa656c6160b098b76d29a2108fea41f191dab41
                     @Override
                     public void onResponse(String response) {
                         try {

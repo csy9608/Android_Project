@@ -45,7 +45,6 @@ public class MyInfoModifyActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("userID", userID);
 
-
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
