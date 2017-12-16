@@ -135,10 +135,12 @@ public class ModifyBoardActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse+"durl");
+
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
-                                int boardID = jsonResponse.getInt("boardID");
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                System.out.println(jsonResponse+"durl22");
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ModifyBoardActivity.this);
                                 builder.setMessage("이미지 등록에 성공했습니다.")
                                         .setPositiveButton("확인", null)
                                         .create()
@@ -149,7 +151,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
                                 intent.putExtra("boardID", boardID);
                                 startActivity(intent);
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ModifyBoardActivity.this);
                                 builder.setMessage("이미지 등록에 실패했습니다.")
                                         .setNegativeButton("다시 시도", null)
                                         .create()
