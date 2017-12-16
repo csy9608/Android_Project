@@ -29,11 +29,35 @@
                 android:id="@+id/mypage_modifyInfo_btn"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mypage_user_ly"
+            android:id="@+id/mypage_align_ly">
+
+            <ToggleButton
+                android:id="@+id/mypage_btn_align_likest"
+                style="@android:style/Widget.Holo.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="Likest"
+                android:textOn="Likest" />
+
+            <ToggleButton
+                android:id="@+id/mypage_btn_align_latest"
+                style="@android:style/Widget.Holo.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="Latest"
+                android:textOn="Latest" />
+
+        </LinearLayout>
+
         <ListView
             android:id="@+id/mypage_lv"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_below="@id/mypage_user_ly">
+            android:layout_below="@id/mypage_align_ly">
         </ListView>
 
         <android.support.design.widget.BottomNavigationView
