@@ -182,6 +182,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 upload_iv.setImageBitmap(bitmap);
+                check=true;
             }catch (IOException e){
                 e.printStackTrace();
             }
