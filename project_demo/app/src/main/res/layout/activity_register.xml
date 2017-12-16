@@ -3,50 +3,94 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/regis_et_ID"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ID"
-        android:inputType="textPersonName" />
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/regis_et_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="PASSWORD"
-        android:inputType="textPassword" />
+        <TextView
+            android:id="@+id/iv1"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_margin="50dp"
+            android:gravity="left"
+            android:text="회원가입"
+            android:textColor="#5A78AF"
+            android:textSize="30sp"></TextView>
 
-    <EditText
-        android:id="@+id/regis_et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="NAME"
-        android:inputType="textPersonName" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/regis_et_age"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="AGE"
-        android:inputType="numberDecimal" />
+        android:orientation="vertical"
+        android:layout_margin="40dp"
+        android:layout_marginTop="5dp">
 
-    <EditText
-        android:id="@+id/regis_et_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="GENDER"
-        android:inputType="textPersonName" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
 
-    <Button
-        android:id="@+id/regis_btn_regis"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="REGISTER" />
+            <EditText
+                android:id="@+id/regis_et_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="ID"
+                android:inputType="textPersonName" />
 
+            <Button
+                android:id="@+id/IDcheckbutton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorblightsky"
+                android:textColor="#000000"
+                android:text="ID확인" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/regis_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="PASSWORD"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/regis_et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="NAME"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/regis_et_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="AGE"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/regis_et_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="GENDER"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/regis_btn_regis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorblightsky"
+            android:textColor="#000000"
+            android:text="REGISTER" />
+
+    </LinearLayout>
 </LinearLayout>
