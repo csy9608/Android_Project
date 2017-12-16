@@ -3,14 +3,37 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical">
+=======
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/regis_et_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="ID"
+        android:inputType="textPersonName"
+        android:layout_weight="1"/>
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:text="REGISTER"
             android:textSize="30dp"
             android:textAlignment="center"
@@ -25,16 +48,38 @@
             android:text="회원가입"
             android:textColor="#5A78AF"
             android:textSize="30sp"/>
-
+=======
+            android:layout_weight="3"
+            android:text="check"
+            android:id="@+id/regis_btn_check_id"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="300dp"
+    <EditText
+        android:id="@+id/regis_et_password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="40dp"
-        android:layout_marginTop="5dp">
+        android:ems="10"
+        android:hint="PASSWORD"
+        android:inputType="textPassword" />
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
 
+    <EditText
+        android:id="@+id/regis_et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="NAME"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/regis_et_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="AGE"
+        android:inputType="numberDecimal" />
+
+<<<<<<< HEAD
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +87,12 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
 
+=======
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
 
         <TextView
             android:layout_width="match_parent"
@@ -77,6 +128,7 @@
     </LinearLayout>
 
 
+<<<<<<< HEAD
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -124,21 +176,17 @@
             android:ems="10"
             android:hint="AGE"
             android:inputType="numberDecimal" />
+=======
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
 
-        <EditText
-            android:id="@+id/regis_et_gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="GENDER"
-            android:inputType="textPersonName" />
+    <Button
+        android:id="@+id/regis_btn_regis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REGISTER" />
 
-        <Button
-            android:id="@+id/regis_btn_regis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorblightsky"
-            android:textColor="#000000"
-            android:text="REGISTER" />
-
+<<<<<<< HEAD
     </LinearLayout>
+=======
+</LinearLayout>
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817

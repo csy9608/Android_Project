@@ -7,7 +7,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="400dp"
-        android:id="@+id/mitm_iv"/>
+        android:id="@+id/mitm_iv"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +18,11 @@
         android:orientation="horizontal">
 
         <ToggleButton
+<<<<<<< HEAD
             android:layout_width="50dp"
+=======
+            android:layout_width="40dp"
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
             android:layout_height="50dp"
             android:id="@+id/mitm_like_btn"
             android:textOn=""

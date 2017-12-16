@@ -40,6 +40,7 @@ public class RegisterActivtiy extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+<<<<<<< HEAD
 
                 String userID = regis_et_ID.getText().toString();
                 String userPassword = regis_et_password.getText().toString();
@@ -101,6 +102,9 @@ public class RegisterActivtiy extends AppCompatActivity{
 =======
                 Response.Listener<String> responseListener  = new Response.Listener<String>() {
 >>>>>>> parent of 04962e8... Merge branch 'csy' of https://github.com/csy9608/Android_Project into csy
+=======
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
                     @Override
                     public void onResponse(String response) {
                         try {

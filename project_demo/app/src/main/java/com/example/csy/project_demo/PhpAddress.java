@@ -15,5 +15,6 @@ public class PhpAddress {
     final static String UpdateLike = "http://csy9608.cafe24.com/UpdateLike.php"; //  IN: boardID / OUT: success
     final static String ModifyMyInfo = "http://csy9608.cafe24.com/ModifyMyInfo.php"; // IN: set, delete,  userID, userName, (userPassword), userAge, userGender /  OUT: (userID, userName, userAge, userGender), success
     final static String ModifyBoard = "http://csy9608.cafe24.com/ModifyBoard.php"; //  IN: userID, boardID, (temperature, encoded_string, imageTags,) delete /  OUT: success, authority
-
+    final static String SearchPage = "http://csy9608.cafe24.com/SearchPage.php";
+    final static String GetFreqTags = "http://csy9608.cafe24.com/GetFreqTags.php";
 }

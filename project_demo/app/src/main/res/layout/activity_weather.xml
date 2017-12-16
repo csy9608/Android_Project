@@ -31,6 +31,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +41,16 @@
         android:text="Today's Weather"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tags"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:id="@+id/weather_tv_tags"/>
+
+>>>>>>> deec4bcbda54907be93da0e29d731c2061627817
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/weather_btm_nav"
