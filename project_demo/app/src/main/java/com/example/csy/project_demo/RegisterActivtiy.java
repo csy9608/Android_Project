@@ -61,7 +61,64 @@ public class RegisterActivtiy extends AppCompatActivity{
             public void onClick(View v) {
                 userID = regis_et_ID.getText().toString();
 
+<<<<<<< HEAD
+                String userID = regis_et_ID.getText().toString();
+                String userPassword = regis_et_password.getText().toString();
+                String userName = regis_et_name.getText().toString();
+                String userAge = regis_et_age.getText().toString();
+                String userGender = regis_et_gender.getText().toString();
+
+                Map <String,String> params = new HashMap<>();
+                params.put("userID", userID);
+                params.put("userPassword", userPassword);
+                params.put("userName", userName);
+                params.put("userAge", userAge);
+                params.put("userGender", userGender);
+                final Button IDcheckbutton=(Button)findViewById(R.id.IDcheckbutton);
+
+                IDcheckbutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String userID = regis_et_ID.getText().toString();
+
+                        Map <String,String> params = new HashMap<>();
+                        params.put("userID", userID);
+
+                        Response.Listener<String> responseListener  = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonResponse = new JSONObject(response);
+                                    boolean success = jsonResponse.getBoolean("exist");
+                                    if (success) {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivtiy.this);
+                                        builder.setMessage("아이디가 존재합니다.")
+                                                .setPositiveButton("확인", null)
+                                                .create()
+                                                .show();
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                    } else {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivtiy.this);
+                                        builder.setMessage("사용가능한 아이디입니다.")
+                                                .setNegativeButton("확인", null)
+                                                .create()
+                                                .show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.CHECKID, params, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        queue.add(volleyRequest);
+                    }
+                });
+
+                Response.Listener<String> responseListener  = new Response.Listener<String>() {
+=======
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
+>>>>>>> 9aa656c6160b098b76d29a2108fea41f191dab41
                     @Override
                     public void onResponse(String response) {
                         try {
