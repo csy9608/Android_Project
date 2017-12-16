@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -52,52 +51,11 @@ public class MyPageActivity extends AppCompatActivity {
     final int width = 3;
     final int limit = 15;
     Map<String, String> params = new HashMap<>();
-    private boolean align_likes = false;
-    private ToggleButton mypage_btn_align_latest;
-    private ToggleButton mypage_btn_align_likest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-
-        align_likes = getIntent().getBooleanExtra("align_likes",false);
-        mypage_btn_align_latest = (ToggleButton) findViewById(R.id.mypage_btn_align_latest);
-        mypage_btn_align_likest = (ToggleButton) findViewById(R.id.mypage_btn_align_likest);
-
-        mypage_userID_tv = (TextView) findViewById(R.id.mypage_userID_tv);
-
-        if(align_likes){
-            mypage_btn_align_likest.setChecked(true);
-            mypage_btn_align_latest.setChecked(false);
-        }
-        else{
-            mypage_btn_align_latest.setChecked(true);
-            mypage_btn_align_likest.setChecked(false);
-        }
-
-        mypage_btn_align_latest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(align_likes){
-                    mypage_btn_align_likest.setChecked(false);
-                    Intent intent = new Intent(MyPageActivity.this, MyPageActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-        mypage_btn_align_likest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!align_likes){
-                    mypage_btn_align_latest.setChecked(false);
-                    Intent intent = new Intent(MyPageActivity.this, MyPageActivity.class);
-                    intent.putExtra("align_likes",true);
-                    startActivity(intent);
-                }
-            }
-        });
 
         mypage_userID_tv.setText(CurrentInfo.GET(CurrentInfo.ID).toString());
 
@@ -222,9 +180,6 @@ public class MyPageActivity extends AppCompatActivity {
         params.put("start", Integer.toString(currentID));
         params.put("limit", Integer.toString(limit));
 
-        if(align_likes){
-            params.put("align_likes","true");
-        }
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MYPAGE, params, listener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(volleyRequest);

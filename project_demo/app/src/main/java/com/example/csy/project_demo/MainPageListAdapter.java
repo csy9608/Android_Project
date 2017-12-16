@@ -116,8 +116,4 @@ public class MainPageListAdapter extends BaseAdapter{
 
         return v;
     }
-
-    public void setmMainPageItemList(List<BoardItem> mMainPageItemList) {
-        this.mMainPageItemList = mMainPageItemList;
-    }
 }

@@ -18,8 +18,7 @@
   $row1 = mysqli_fetch_array($result1);
   $tempID = $row1['tempID'];
   $userID=$_POST['userID'];
-  $response = array();
-  
+
   if(isset($userID)){
 
     if(isset($align_likes)){
@@ -30,6 +29,7 @@
     }
 
     $result2 = mysqli_query($con, $query2);
+    $response = array();
 
     $response['boardID'] = array();
     $response['imagePath'] = array();
