@@ -28,6 +28,7 @@
         <activity android:name=".ModifyBoardActivity"></activity>
         <activity android:name=".MyPageActivity"></activity>
         <activity android:name=".SearchPageActivity"></activity>
+        <activity android:name=".MyInfoModifyActivity"></activity>
     </application>
 
 </manifest>

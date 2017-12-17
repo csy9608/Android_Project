@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\GS43VR\Documents\GitHub\Android_Project\Android_Project-recovery\project_demo\app\app.iml" filepath="C:\Users\GS43VR\Documents\GitHub\Android_Project\Android_Project-recovery\project_demo\app\app.iml" />
       <module fileurl="file://C:\Users\LG\Downloads\Android_Project-3208d26ca8d256e70fa5fbae561ffecea2a40580\project_demo\app\app.iml" filepath="C:\Users\LG\Downloads\Android_Project-3208d26ca8d256e70fa5fbae561ffecea2a40580\project_demo\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/project_demo.iml" filepath="$PROJECT_DIR$/project_demo.iml" />
-      <module fileurl="file://C:\Users\GS43VR\Documents\GitHub\Android_Project\Android_Project-recovery\project_demo\project_demo.iml" filepath="C:\Users\GS43VR\Documents\GitHub\Android_Project\Android_Project-recovery\project_demo\project_demo.iml" />
       <module fileurl="file://C:\Users\LG\Downloads\Android_Project-3208d26ca8d256e70fa5fbae561ffecea2a40580\project_demo\project_demo.iml" filepath="C:\Users\LG\Downloads\Android_Project-3208d26ca8d256e70fa5fbae561ffecea2a40580\project_demo\project_demo.iml" />
     </modules>
   </component>

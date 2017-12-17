@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * Created by csy on 2017-12-01.
@@ -23,5 +24,9 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         }, 3000); // start intent after 3000 milliseconds
+    }
+    public void gonext(View v)
+    {
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 }

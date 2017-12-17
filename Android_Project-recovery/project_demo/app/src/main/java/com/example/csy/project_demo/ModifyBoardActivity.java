@@ -145,7 +145,7 @@ public class ModifyBoardActivity extends AppCompatActivity {
                                         .create()
                                         .show();
                                 modify_iv.setImageResource(0);
-                                modify_iv.setVisibility(View.GONE);
+                                //modify_iv.setVisibility(View.GONE);
                                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                                 intent.putExtra("boardID", boardID);
                                 startActivity(intent);

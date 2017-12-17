@@ -133,7 +133,7 @@ public class MyPageActivity extends AppCompatActivity {
         mypage_modifyInfo_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyPageActivity.this,MyInfoModifyActivity.class));
+                startActivity(new Intent(getApplicationContext(),MyInfoModifyActivity.class));
             }
         });
 

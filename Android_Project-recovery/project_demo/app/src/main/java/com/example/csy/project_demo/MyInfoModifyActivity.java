@@ -39,11 +39,10 @@ public class MyInfoModifyActivity extends AppCompatActivity {
 
 
         String userID = CurrentInfo.GET(CurrentInfo.ID);
-        regis_et_ID.setText(userID);
 
 
-        Map<String, String> params = new HashMap<>();
-        params.put("userID", userID);
+
+
 
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -52,12 +51,15 @@ public class MyInfoModifyActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     System.out.println(jsonResponse+"durl1");
+                    String userName=jsonResponse.getString("userName").toString();
+                    String userAge=jsonResponse.getString("userAge").toString();
+                    String userGender=jsonResponse.getString("userGender").toString();
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        regis_et_password.setText(jsonResponse.getString("userPassword"));
-                        regis_et_name.setText(jsonResponse.getString("userName"));
-                        regis_et_age.setText(jsonResponse.getInt("userAge"));
-                        regis_et_gender.setText(jsonResponse.getString("userGender"));
+                        //regis_et_password.setText(jsonResponse.getString("userPassword"));
+                        regis_et_name.setText(userName);
+                        regis_et_age.setText(userAge);
+                        regis_et_gender.setText(userGender);
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoModifyActivity.this);
                         builder.setMessage("받아오기에 실패했습니다.")
@@ -70,6 +72,9 @@ public class MyInfoModifyActivity extends AppCompatActivity {
                 }
             }
         };
+        Map<String, String> params = new HashMap<>();
+        params.put("userID", userID);
+        regis_et_ID.setText(userID);
         VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MMYINFO, params, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(volleyRequest);
