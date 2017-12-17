@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +44,18 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle instance) {
         super.onCreate(instance);
         setContentView(R.layout.activity_weather);
+        MenuView.ItemView tmp;
+        tmp=(MenuView.ItemView) findViewById(R.id.action_my);
+        tmp.setChecked(true);
+        MenuView.ItemView tmp1;
+        tmp1=(MenuView.ItemView) findViewById(R.id.action_weather);
+        tmp1.setChecked(true);
+        MenuView.ItemView tmp2;
+        tmp2=(MenuView.ItemView) findViewById(R.id.action_main);
+        tmp2.setChecked(true);
+        MenuView.ItemView tmp3;
+        tmp3=(MenuView.ItemView) findViewById(R.id.action_search);
+        tmp3.setChecked(true);
 
         TextView weather_text=(TextView)findViewById(R.id.weather_text);
         weather_image=(ImageView)findViewById(R.id.weather_image);

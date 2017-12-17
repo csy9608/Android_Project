@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -60,6 +61,18 @@ public class MyPageActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
+        MenuView.ItemView tmp;
+        tmp=(MenuView.ItemView) findViewById(R.id.action_my);
+        tmp.setChecked(true);
+        MenuView.ItemView tmp1;
+        tmp1=(MenuView.ItemView) findViewById(R.id.action_weather);
+        tmp1.setChecked(true);
+        MenuView.ItemView tmp2;
+        tmp2=(MenuView.ItemView) findViewById(R.id.action_main);
+        tmp2.setChecked(true);
+        MenuView.ItemView tmp3;
+        tmp3=(MenuView.ItemView) findViewById(R.id.action_search);
+        tmp3.setChecked(true);
 
         align_likes = getIntent().getBooleanExtra("align_likes",false);
         mypage_btn_align_latest = (ToggleButton) findViewById(R.id.mypage_btn_align_latest);
