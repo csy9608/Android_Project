@@ -24,18 +24,27 @@ import java.util.Map;
  */
 
 public class MyInfoModifyActivity extends AppCompatActivity {
+    private EditText regis_et_ID ;
+    private EditText regis_et_password ;
+    private EditText regis_et_name ;
+    private EditText regis_et_age;
+    private EditText regis_et_gender ;
+    private Button regis_btn_modify ;
+    private Button regis_btn_delete_;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_info);
 
-        final EditText regis_et_ID = (EditText) findViewById(R.id.regis_et_ID);
-        final EditText regis_et_password = (EditText) findViewById(R.id.regis_et_password);
-        final EditText regis_et_name = (EditText) findViewById(R.id.regis_et_name);
-        final EditText regis_et_age = (EditText) findViewById(R.id.regis_et_age);
-        final EditText regis_et_gender = (EditText) findViewById(R.id.regis_et_gender);
-        final Button regis_btn_modify = (Button) findViewById(R.id.regis_btn_modify);
-        final Button regis_btn_delete_ = (Button) findViewById(R.id.regis_btn_delete);
+        regis_et_ID = (EditText) findViewById(R.id.regis_et_ID);
+        regis_et_password = (EditText) findViewById(R.id.regis_et_password);
+        regis_et_name = (EditText) findViewById(R.id.regis_et_name);
+        regis_et_age = (EditText) findViewById(R.id.regis_et_age);
+        regis_et_gender = (EditText) findViewById(R.id.regis_et_gender);
+        regis_btn_modify = (Button) findViewById(R.id.regis_btn_modify);
+        regis_btn_delete_ = (Button) findViewById(R.id.regis_btn_delete);
+
+
 
 
         String userID = CurrentInfo.GET(CurrentInfo.ID);
