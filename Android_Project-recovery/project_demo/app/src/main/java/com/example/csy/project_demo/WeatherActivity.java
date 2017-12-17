@@ -109,5 +109,9 @@ public class WeatherActivity extends AppCompatActivity {
                 });
 
     }
-
+    public void goMain(View v)
+    {
+        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+    }
 }
+

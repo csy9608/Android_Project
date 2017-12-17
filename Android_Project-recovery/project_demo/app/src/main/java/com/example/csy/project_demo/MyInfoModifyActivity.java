@@ -51,6 +51,7 @@ public class MyInfoModifyActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
+                    System.out.println(jsonResponse+"durl1");
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
                         regis_et_password.setText(jsonResponse.getString("userPassword"));
@@ -96,6 +97,7 @@ public class MyInfoModifyActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
+                            System.out.println(jsonResponse+"durl22");
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoModifyActivity.this);

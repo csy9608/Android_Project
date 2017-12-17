@@ -135,11 +135,10 @@ public class ModifyBoardActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            System.out.println(jsonResponse+"durl");
 
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
-                                System.out.println(jsonResponse+"durl22");
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(ModifyBoardActivity.this);
                                 builder.setMessage("이미지 등록에 성공했습니다.")
                                         .setPositiveButton("확인", null)
