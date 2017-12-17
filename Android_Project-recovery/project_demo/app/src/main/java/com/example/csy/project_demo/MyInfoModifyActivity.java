@@ -2,9 +2,12 @@ package com.example.csy.project_demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +33,8 @@ public class MyInfoModifyActivity extends AppCompatActivity {
     private EditText regis_et_age;
     private EditText regis_et_gender ;
     private Button regis_btn_modify ;
-    private Button regis_btn_delete_;
+    private Button regis_btn_delete;
+    private BottomNavigationView bottomNavigationItemView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +46,28 @@ public class MyInfoModifyActivity extends AppCompatActivity {
         regis_et_age = (EditText) findViewById(R.id.regis_et_age);
         regis_et_gender = (EditText) findViewById(R.id.regis_et_gender);
         regis_btn_modify = (Button) findViewById(R.id.regis_btn_modify);
-        regis_btn_delete_ = (Button) findViewById(R.id.regis_btn_delete);
+        regis_btn_delete = (Button) findViewById(R.id.regis_btn_delete);
+        bottomNavigationItemView = (BottomNavigationView) findViewById(R.id.modify_info_btm_nav);
+        bottomNavigationItemView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_weather:
+                        startActivity(new Intent(getApplicationContext(), WeatherActivity.class));
+                        break;
+                    case R.id.action_main:
+                        startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
+                        break;
+                    case R.id.action_my:
+                        startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                        break;
+                    case R.id.action_search:
+                        startActivity(new Intent(getApplicationContext(), SearchPageActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
 
 
 
@@ -119,7 +144,7 @@ public class MyInfoModifyActivity extends AppCompatActivity {
                                         .setPositiveButton("확인", null)
                                         .create()
                                         .show();
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoModifyActivity.this);
                                 builder.setMessage("회원정보 수정에 실패했습니다.")
@@ -136,6 +161,44 @@ public class MyInfoModifyActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(volleyRequest);
 
+            }
+        });
+        regis_btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Response.Listener<String> listener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            Boolean success = jsonResponse.getBoolean("success");
+                            if(success){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoModifyActivity.this);
+                                builder.setMessage("삭제에 성공했습니다.")
+                                        .setPositiveButton("확인", null)
+                                        .create()
+                                        .show();
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MyInfoModifyActivity.this);
+                                builder.setMessage("삭제에 실패했습니다.")
+                                        .setNegativeButton("다시 시도", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                Map params = new HashMap();
+                params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
+                params.put("delete", Boolean.toString(true));
+
+                VolleyRequest volleyRequest = new VolleyRequest(VolleyRequest.MODE.MBOARD, params, listener);
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                queue.add(volleyRequest);
             }
         });
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -54,5 +55,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="DELETE" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/modify_info_btm_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="#FFFFFF"
+            app:itemTextColor="#FFFFFF"
+            app:menu="@menu/bottom_navigation_main"
+            android:layout_alignParentBottom="true">
+        </android.support.design.widget.BottomNavigationView>
+    </RelativeLayout>
 
 </LinearLayout>

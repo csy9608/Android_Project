@@ -5,7 +5,9 @@
         android:id="@+id/action_weather"
         android:enabled="true"
         android:icon="@drawable/ic_weather"
-        android:title="Weather" />
+        android:title="Weather"
+
+        />
 
     <item
         android:id="@+id/action_main"

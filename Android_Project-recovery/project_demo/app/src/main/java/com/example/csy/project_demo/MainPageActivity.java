@@ -104,6 +104,9 @@ public class MainPageActivity extends AppCompatActivity {
                     case R.id.action_my:
                         startActivity(new Intent(MainPageActivity.this, MyPageActivity.class));
                         break;
+                    case R.id.action_search:
+                        startActivity(new Intent(MainPageActivity.this, SearchPageActivity.class));
+                        break;
                 }
                 return true;
             }

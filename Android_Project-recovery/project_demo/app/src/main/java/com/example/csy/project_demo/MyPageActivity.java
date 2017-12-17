@@ -115,6 +115,9 @@ public class MyPageActivity extends AppCompatActivity {
                     case R.id.action_my:
                         startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
                         break;
+                    case R.id.action_search:
+                        startActivity(new Intent(getApplicationContext(), SearchPageActivity.class));
+                        break;
                 }
                 return true;
             }

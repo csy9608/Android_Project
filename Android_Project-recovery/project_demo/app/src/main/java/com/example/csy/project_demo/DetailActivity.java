@@ -78,6 +78,9 @@ public class DetailActivity extends AppCompatActivity{
                     case R.id.action_my:
                         startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
                         break;
+                    case R.id.action_search:
+                        startActivity(new Intent(getApplicationContext(), SearchPageActivity.class));
+                        break;
                 }
                 return true;
             }
@@ -127,7 +130,6 @@ public class DetailActivity extends AppCompatActivity{
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
-                            System.out.println(jsonResponse+"durl34134");
                             Boolean success = jsonResponse.getBoolean("success");
                             if(success){
                                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);

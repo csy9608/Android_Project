@@ -61,13 +61,11 @@ public class SearchPageActivity extends AppCompatActivity {
 
         align_likes = getIntent().getBooleanExtra("align_likes",false);
         btn_search_clicked = getIntent().getBooleanExtra("btn_search_clicked", false);
-        keyword = getIntent().getStringExtra("keyword");
+
         search_btn_align_latest = (ToggleButton) findViewById(R.id.search_btn_align_latest);
         search_btn_align_likest = (ToggleButton) findViewById(R.id.search_btn_align_likest);
         search_btn_search = (Button)findViewById(R.id.search_btn_search);
         search_et_search = (EditText) findViewById(R.id.search_et_search);
-
-        search_et_search.setPrivateImeOptions("defaultInputmode=korean; ");  // 설정
 
         if(align_likes){
             search_btn_align_likest.setChecked(true);
@@ -135,6 +133,9 @@ public class SearchPageActivity extends AppCompatActivity {
                         break;
                     case R.id.action_my:
                         startActivity(new Intent(SearchPageActivity.this, MyPageActivity.class));
+                        break;
+                    case R.id.action_search:
+                        startActivity(new Intent(getApplicationContext(), SearchPageActivity.class));
                         break;
                 }
                 return true;
@@ -229,9 +230,10 @@ public class SearchPageActivity extends AppCompatActivity {
                 }
             };
 
+            keyword = getIntent().getStringExtra("keyword");
             params.put("start", Integer.toString(currentID));
-            params.put("userID", CurrentInfo.GET(CurrentInfo.ID));
-            params.put("temperature", CurrentInfo.GET(CurrentInfo.TEMPER));
+            params.put("userID",CurrentInfo.GET(CurrentInfo.ID));
+            params.put("keyword", keyword);
             params.put("limit",Integer.toString(limit));
 
             if(align_likes){
@@ -244,7 +246,7 @@ public class SearchPageActivity extends AppCompatActivity {
 
             return lst;
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public  class ThreadGetMoreData extends Thread{

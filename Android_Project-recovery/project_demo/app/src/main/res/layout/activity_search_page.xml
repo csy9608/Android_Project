@@ -20,7 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/search_et_search"/>
+            android:id="@+id/search_et_search"
+            android:maxLines="1"
+            android:inputType="text"/>
 
     </LinearLayout>
     <LinearLayout
@@ -61,8 +63,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@drawable/nav_item_color_state"
-            app:itemTextColor="@drawable/nav_item_color_state"
+            app:itemIconTint="#FFFFFF"
+          app:itemTextColor="#FFFFFF"
             app:menu="@menu/bottom_navigation_main"
             android:layout_weight="9">
     </android.support.design.widget.BottomNavigationView>
