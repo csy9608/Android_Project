@@ -1,4 +1,0 @@
-#Sun Dec 17 07:06:33 GMT+09:00 2017
-base.0=C\:\\Users\\GS43VR\\Documents\\GitHub\\Android_Project\\project_demo\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex

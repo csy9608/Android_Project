@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_weather"
+        android:enabled="true"
+        android:icon="@drawable/ic_weather"
+        android:title="Weather"
+
+        />
+
+    <item
+        android:id="@+id/action_main"
+        android:enabled="true"
+        android:icon="@drawable/ic_main"
+        android:title="Main" />
+
+    <item
+        android:id="@+id/action_my"
+        android:enabled="true"
+        android:icon="@drawable/ic_my"
+        android:title="My" />
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
+
+</menu>

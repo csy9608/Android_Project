@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mypage_user_ly">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="userID"
+                android:textSize="40dp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/mypage_userID_tv"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modify"
+                android:layout_weight="3"
+                android:id="@+id/mypage_modifyInfo_btn"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mypage_user_ly"
+            android:id="@+id/mypage_align_ly">
+
+            <ToggleButton
+                android:id="@+id/mypage_btn_align_likest"
+                style="@android:style/Widget.Holo.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="Likest"
+                android:textOn="Likest" />
+
+            <ToggleButton
+                android:id="@+id/mypage_btn_align_latest"
+                style="@android:style/Widget.Holo.Button.Toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textOff="Latest"
+                android:textOn="Latest" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/mypage_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/mypage_align_ly"
+            android:layout_above="@id/mypage_btm_nav">
+        </ListView>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/mypage_btm_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state"
+            app:menu="@menu/bottom_navigation_main"
+            android:layout_alignParentBottom="true">
+        </android.support.design.widget.BottomNavigationView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/mypage_upload_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:backgroundTint="@android:color/white"
+            app:srcCompat="@mipmap/ic_add_white_24dp"
+            tools:backgroundTint="@android:color/background_dark"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_above="@id/mypage_btm_nav"/>
+
+    </RelativeLayout>
+</LinearLayout>
